@@ -39,6 +39,16 @@ for UniqueID in range(571194,44349139):
             time.sleep(200)
             
             response = requests.get(URL)
+                if response.status_code == 429:
+                    time.sleep(300)
+                    response = requests.get(URL)
+                    if response.status_code == 429:
+                        time.sleep(500)
+                        response = requests.get(URL)
+                    else:
+                        exit
+                else:
+                    exit
             print(response.status_code)
 
             # Write the downloaded file to current directory
